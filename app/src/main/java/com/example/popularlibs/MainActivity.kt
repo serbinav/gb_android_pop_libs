@@ -8,7 +8,6 @@ class MainActivity : AppCompatActivity(), MainView {
 
     private lateinit var binding: ActivityMainBinding
     private val presenter = MainPresenter(this)
-    private val COUNTERS_KEY = "COUNTERS_KEY"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,25 +15,21 @@ class MainActivity : AppCompatActivity(), MainView {
         setContentView(binding.root)
 
         binding.btnOne.setOnClickListener {
-            presenter.counterOneClick()
+            presenter.counterClick(ButtonTypeEnum.FIRST_BUTTON)
         }
         binding.btnTwo.setOnClickListener {
-            presenter.counterTwoClick()
+            presenter.counterClick(ButtonTypeEnum.SECOND_BUTTON)
         }
         binding.btnThree.setOnClickListener {
-            presenter.counterThreeClick()
+            presenter.counterClick(ButtonTypeEnum.THIRD_BUTTON)
         }
     }
 
-    override fun setButtonOneText(text: String) {
-        binding.btnOne.text = text
-    }
-
-    override fun setButtonTwoText(text: String) {
-        binding.btnTwo.text = text
-    }
-
-    override fun setButtonThreeText(text: String) {
-        binding.btnThree.text = text
+    override fun setButtonText(model: ButtonUiModel) {
+        when(model.index){
+            ButtonTypeEnum.FIRST_BUTTON -> binding.btnOne.text = model.value
+            ButtonTypeEnum.SECOND_BUTTON -> binding.btnTwo.text = model.value
+            ButtonTypeEnum.THIRD_BUTTON -> binding.btnThree.text = model.value
+        }
     }
 }
