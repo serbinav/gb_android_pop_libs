@@ -2,12 +2,13 @@ package com.example.popularlibs
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.example.popularlibs.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainView {
 
     private lateinit var binding: ActivityMainBinding
-    private val counters = mutableListOf(0, 0, 0)
+    val presenter = MainPresenter(this)
     private val COUNTERS_KEY = "COUNTERS_KEY"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,39 +16,21 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnOne.setOnClickListener {
-            binding.btnOne.text = (++counters[0]).toString()
-        }
 
-        binding.btnTwo.setOnClickListener {
-            binding.btnTwo.text = (++counters[1]).toString()
+        val listener = View.OnClickListener{
+            presenter.counterClick(it.id)
         }
-
-        binding.btnThree.setOnClickListener {
-            binding.btnThree.text = (++counters[2]).toString()
-        }
-
-        init()
+        binding.btnOne.setOnClickListener(listener)
+        binding.btnTwo.setOnClickListener(listener)
+        binding.btnThree.setOnClickListener(listener)
     }
 
-    fun init(){
-        binding.btnOne.text = counters[0].toString()
-        binding.btnTwo.text = counters[1].toString()
-        binding.btnThree.text = counters[2].toString()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putIntArray(COUNTERS_KEY, counters.toIntArray())
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        val countersArray = savedInstanceState.getIntArray(COUNTERS_KEY)
-        countersArray?.toList()?.let {
-            counters.clear()
-            counters.addAll(it)
-            init()
+    //error
+    override fun setButtonText(index: Int, text: String) {
+        when (index) {
+            0 -> binding.btnOne.text = text
+            1 -> binding.btnTwo.text = text
+            2 -> binding.btnThree.text = text
         }
     }
 }
