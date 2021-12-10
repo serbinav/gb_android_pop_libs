@@ -13,10 +13,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportFragmentManager.beginTransaction()
+            .replace(binding.container.id, LoginFragment())
+            .commitNow()
+
         binding.fab.setOnClickListener{
             supportFragmentManager.beginTransaction()
-                .replace(binding.container.id, CounterFragment())
-                .commitNow()
+                .add(binding.container.id, CounterFragment())
+                .commit()
         }
     }
 }
