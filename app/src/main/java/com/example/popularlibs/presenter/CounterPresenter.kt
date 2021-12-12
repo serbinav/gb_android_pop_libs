@@ -1,8 +1,10 @@
-package com.example.popularlibs
+package com.example.popularlibs.presenter
 
-import com.example.popularlibs.ui.ButtonUiModel
+import com.example.popularlibs.*
+import com.example.popularlibs.model.CountersModel
+import com.example.popularlibs.view.CounterView
 
-class MainPresenter(private val view: MainView) {
+class CounterPresenter(private val view: CounterView) {
 
     private val mapper = EnumToIndexMapper()
     private val model = CountersModel(mapper)

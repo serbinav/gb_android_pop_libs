@@ -1,4 +1,4 @@
-package com.example.popularlibs.ui
+package com.example.popularlibs.view
 
 import android.content.Context
 import android.os.Bundle
@@ -6,17 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.popularlibs.presenter.LoginPresenter
 import com.example.popularlibs.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
 
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+    private val presenter = LoginPresenter()
+    private var onClickAccept: OnClickAccept? = null
+
     interface OnClickAccept {
         fun onClickAccept(login: String, password: String)
     }
-
-    private var _binding: FragmentLoginBinding? = null
-    private val binding get() = _binding!!
-    private var onClickAccept: OnClickAccept? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +49,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnAccept.setOnClickListener {
+            presenter.btnAcceptClick(binding.login.text.toString(), binding.password.text.toString())
             if (!binding.login.text.isNullOrEmpty() && !binding.password.text.isNullOrEmpty()) {
                 onClickAccept?.onClickAccept(
                     binding.login.text.toString(),

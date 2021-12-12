@@ -1,4 +1,4 @@
-package com.example.popularlibs.ui
+package com.example.popularlibs.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

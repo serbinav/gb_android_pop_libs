@@ -1,4 +1,4 @@
-package com.example.popularlibs.ui
+package com.example.popularlibs.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.popularlibs.*
 import com.example.popularlibs.databinding.FragmentCounterBinding
+import com.example.popularlibs.presenter.CounterPresenter
 
-class CounterFragment : Fragment(), MainView {
+class CounterFragment : Fragment(), CounterView {
 
     private var _binding: FragmentCounterBinding? = null
     private val binding get() = _binding!!
-    private val presenter = MainPresenter(this)
+    private val presenter = CounterPresenter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
