@@ -7,21 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.popularlibs.databinding.FragmentSuccessAuthorizationBinding
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val LOGIN_KEY = "LOGIN_KEY"
+private const val PASSWORD_KEY = "PASSWORD_KEY"
 
 class SuccessAuthorizationFragment : Fragment() {
 
     private var _binding: FragmentSuccessAuthorizationBinding? = null
     private val binding get() = _binding!!
-    private var param1: String? = null
-    private var param2: String? = null
+    private var login: String? = null
+    private var password: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            login = it.getString(LOGIN_KEY)
+            password = it.getString(PASSWORD_KEY)
         }
     }
 
@@ -38,13 +38,24 @@ class SuccessAuthorizationFragment : Fragment() {
         super.onDestroyView()
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (!login.isNullOrEmpty() && !password.isNullOrEmpty()) {
+            binding.text.text = String.format(
+                "Success Login " + System.lineSeparator() + "Hello %s with password %s",
+                login,
+                password
+            )
+        }
+    }
+
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(login: String, password: String) =
             SuccessAuthorizationFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(LOGIN_KEY, login)
+                    putString(PASSWORD_KEY, password)
                 }
             }
     }
