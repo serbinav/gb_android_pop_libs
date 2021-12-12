@@ -1,5 +1,7 @@
 package com.example.popularlibs
 
+import com.example.popularlibs.ui.ButtonUiModel
+
 class MainPresenter(private val view: MainView) {
 
     private val mapper = EnumToIndexMapper()

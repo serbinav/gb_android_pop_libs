@@ -2,9 +2,10 @@ package com.example.popularlibs.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.popularlibs.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), LoginFragment.OnClickAccept {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -22,6 +23,14 @@ class MainActivity : AppCompatActivity() {
                 .add(binding.container.id, CounterFragment())
                 .commit()
         }
+    }
+
+    override fun onClickAccept(login: String, password: String) {
+        Toast.makeText(this, " GOOD ", Toast.LENGTH_SHORT).show()
+
+        supportFragmentManager.beginTransaction()
+            .replace(binding.container.id, SuccessAuthorizationFragment())
+            .commit()
     }
 }
 
