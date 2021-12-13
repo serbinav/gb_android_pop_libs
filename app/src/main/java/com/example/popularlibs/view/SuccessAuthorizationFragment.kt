@@ -6,6 +6,7 @@ import moxy.ktx.moxyPresenter
 import com.example.popularlibs.R
 import com.example.popularlibs.presenter.SuccessAuthorizationPresenter
 import com.example.popularlibs.databinding.FragmentSuccessAuthorizationBinding
+import com.example.popularlibs.view.face.SuccessAuthorizationView
 import moxy.MvpAppCompatFragment
 
 private const val LOGIN_KEY = "LOGIN_KEY"

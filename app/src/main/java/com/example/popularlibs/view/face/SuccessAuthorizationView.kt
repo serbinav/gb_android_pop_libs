@@ -1,4 +1,4 @@
-package com.example.popularlibs.view
+package com.example.popularlibs.view.face
 
 import moxy.MvpView
 import moxy.viewstate.strategy.SingleStateStrategy

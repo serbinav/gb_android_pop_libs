@@ -1,6 +1,6 @@
 package com.example.popularlibs.presenter
 
-import com.example.popularlibs.view.SuccessAuthorizationView
+import com.example.popularlibs.view.face.SuccessAuthorizationView
 import com.example.popularlibs.model.SuccessAuthorizationModel
 import moxy.MvpPresenter
 

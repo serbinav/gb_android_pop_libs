@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.example.popularlibs.R
 import com.example.popularlibs.databinding.FragmentLoginBinding
 import com.example.popularlibs.presenter.LoginPresenter
+import com.example.popularlibs.view.face.LoginView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 

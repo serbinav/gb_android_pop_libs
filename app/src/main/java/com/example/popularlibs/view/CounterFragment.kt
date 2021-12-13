@@ -5,6 +5,7 @@ import android.view.View
 import com.example.popularlibs.*
 import com.example.popularlibs.databinding.FragmentCounterBinding
 import com.example.popularlibs.presenter.CounterPresenter
+import com.example.popularlibs.view.face.CounterView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 

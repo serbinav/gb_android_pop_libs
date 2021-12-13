@@ -1,7 +1,7 @@
 package com.example.popularlibs.presenter
 
 import com.example.popularlibs.model.LoginModel
-import com.example.popularlibs.view.LoginView
+import com.example.popularlibs.view.face.LoginView
 import moxy.MvpPresenter
 
 class LoginPresenter : MvpPresenter<LoginView>() {

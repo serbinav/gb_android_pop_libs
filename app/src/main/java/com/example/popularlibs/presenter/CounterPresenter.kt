@@ -2,7 +2,7 @@ package com.example.popularlibs.presenter
 
 import com.example.popularlibs.*
 import com.example.popularlibs.model.CountersModel
-import com.example.popularlibs.view.CounterView
+import com.example.popularlibs.view.face.CounterView
 import moxy.MvpPresenter
 
 class CounterPresenter : MvpPresenter<CounterView>() {
