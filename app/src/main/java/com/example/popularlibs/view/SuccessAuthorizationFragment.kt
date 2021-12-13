@@ -9,29 +9,19 @@ import com.example.popularlibs.databinding.FragmentSuccessAuthorizationBinding
 import com.example.popularlibs.view.face.SuccessAuthorizationView
 import moxy.MvpAppCompatFragment
 
-private const val LOGIN_KEY = "LOGIN_KEY"
-private const val PASSWORD_KEY = "PASSWORD_KEY"
 
 class SuccessAuthorizationFragment : MvpAppCompatFragment(R.layout.fragment_success_authorization),
     SuccessAuthorizationView {
 
-    private lateinit var binding: FragmentSuccessAuthorizationBinding
-    private var login: String? = null
-    private var password: String? = null
-    private val presenter by moxyPresenter { SuccessAuthorizationPresenter() }
+    private val login by lazy { arguments?.getString(LOGIN_KEY).orEmpty() }
+    private val password by lazy { arguments?.getString(PASSWORD_KEY).orEmpty() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            login = it.getString(LOGIN_KEY)
-            password = it.getString(PASSWORD_KEY)
-        }
-    }
+    private lateinit var binding: FragmentSuccessAuthorizationBinding
+    private val presenter by moxyPresenter { SuccessAuthorizationPresenter(login, password) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSuccessAuthorizationBinding.bind(view)
-        presenter.openFragment(login, password)
     }
 
     override fun setHelloText(pair: Pair<String, String>) {
@@ -43,6 +33,9 @@ class SuccessAuthorizationFragment : MvpAppCompatFragment(R.layout.fragment_succ
     }
 
     companion object {
+        private const val LOGIN_KEY = "LOGIN_KEY"
+        private const val PASSWORD_KEY = "PASSWORD_KEY"
+
         @JvmStatic
         fun newInstance(login: String, password: String) =
             SuccessAuthorizationFragment().apply {

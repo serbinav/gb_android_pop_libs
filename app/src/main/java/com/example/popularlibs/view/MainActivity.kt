@@ -1,38 +1,33 @@
 package com.example.popularlibs.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.popularlibs.App
+import com.example.popularlibs.R
 import com.example.popularlibs.databinding.ActivityMainBinding
+import com.example.popularlibs.navigate.CustomNavigator
+import moxy.MvpAppCompatActivity
 
-class MainActivity : AppCompatActivity(), LoginFragment.OnClickAccept {
+class MainActivity : MvpAppCompatActivity(){
 
-    private lateinit var binding: ActivityMainBinding
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
+    private val navigator = CustomNavigator(this, R.id.container)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.beginTransaction()
-            .replace(binding.container.id, LoginFragment.newInstance())
-            .commitNow()
-
-        binding.fab.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .add(binding.container.id, CounterFragment.newInstance())
-                .addToBackStack("")
-                .commit()
-        }
+        if (savedInstanceState == null) App.instance.router.replaceScreen(LoginScreen)
     }
 
-    override fun onClickAccept(login: String, password: String) {
-        supportFragmentManager.beginTransaction()
-            .add(
-                binding.container.id,
-                SuccessAuthorizationFragment.newInstance(login, password)
-            )
-            .addToBackStack("")
-            .commit()
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        App.instance.navigationHolder.setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        App.instance.navigationHolder.removeNavigator()
+        super.onPause()
     }
 }
 

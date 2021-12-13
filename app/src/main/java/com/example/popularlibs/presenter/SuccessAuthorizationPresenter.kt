@@ -4,12 +4,15 @@ import com.example.popularlibs.view.face.SuccessAuthorizationView
 import com.example.popularlibs.model.SuccessAuthorizationModel
 import moxy.MvpPresenter
 
-class SuccessAuthorizationPresenter : MvpPresenter<SuccessAuthorizationView>() {
+class SuccessAuthorizationPresenter(private val login: String, private val password: String) :
+    MvpPresenter<SuccessAuthorizationView>() {
 
     private val model = SuccessAuthorizationModel()
 
-    fun openFragment(login: String?, password: String?) {
-        if (!login.isNullOrEmpty() && !password.isNullOrEmpty()) {
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        if (login.isNotEmpty() && password.isNotEmpty()) {
+
             model.setPair(login, password)
             viewState.setHelloText(model.getPair())
         }
