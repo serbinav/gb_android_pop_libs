@@ -3,8 +3,9 @@ package com.example.popularlibs.presenter
 import com.example.popularlibs.*
 import com.example.popularlibs.model.CountersModel
 import com.example.popularlibs.view.CounterView
+import moxy.MvpPresenter
 
-class CounterPresenter(private val view: CounterView) {
+class CounterPresenter : MvpPresenter<CounterView>() {
 
     private val mapper = EnumToIndexMapper()
     private val model = CountersModel(mapper)
@@ -12,6 +13,6 @@ class CounterPresenter(private val view: CounterView) {
     fun counterClick(type: ButtonTypeEnum) {
         val nextValue = model.next(type)
         val uiModel = ButtonUiModel(type, nextValue.toString())
-        view.setButtonText(uiModel)
+        viewState.setButtonText(uiModel)
     }
 }

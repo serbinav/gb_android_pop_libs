@@ -14,12 +14,12 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnClickAccept {
         setContentView(binding.root)
 
         supportFragmentManager.beginTransaction()
-            .replace(binding.container.id, LoginFragment())
+            .replace(binding.container.id, LoginFragment.newInstance())
             .commitNow()
 
         binding.fab.setOnClickListener {
             supportFragmentManager.beginTransaction()
-                .add(binding.container.id, CounterFragment())
+                .add(binding.container.id, CounterFragment.newInstance())
                 .addToBackStack("")
                 .commit()
         }

@@ -8,4 +8,5 @@
     <string name="password">Пароль</string>
     <string name="accept">Войти</string>
     <string name="success">Success Authorization!!!</string>
+    <string name="error_login">Некорректно введены авторизационные данные!</string>
 </resources>

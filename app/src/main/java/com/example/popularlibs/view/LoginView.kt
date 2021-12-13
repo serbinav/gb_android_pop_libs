@@ -5,7 +5,7 @@ import moxy.viewstate.strategy.SingleStateStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(SingleStateStrategy::class)
-interface SuccessAuthorizationView: MvpView {
+interface LoginView: MvpView {
 
-    fun setHelloText(pair: Pair<String, String>)
+    fun showError()
 }
