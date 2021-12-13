@@ -1,4 +1,7 @@
-package com.example.popularlibs
+package com.example.popularlibs.model
+
+import com.example.popularlibs.ButtonTypeEnum
+import com.example.popularlibs.EnumToIndexMapper
 
 class CountersModel(private val mapper: EnumToIndexMapper) {
 

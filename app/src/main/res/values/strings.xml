@@ -4,4 +4,9 @@
     <string name="counter_two">счетчик 2</string>
     <string name="counter_three">счетчик 3</string>
     <string name="start_count">0</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="accept">Войти</string>
+    <string name="success">Success Authorization!!!</string>
+    <string name="error_login">Некорректно введены авторизационные данные!</string>
 </resources>
