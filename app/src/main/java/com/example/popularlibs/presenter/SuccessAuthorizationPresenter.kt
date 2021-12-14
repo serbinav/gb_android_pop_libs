@@ -13,8 +13,10 @@ class SuccessAuthorizationPresenter(private val login: String, private val passw
         super.onFirstViewAttach()
         if (login.isNotEmpty() && password.isNotEmpty()) {
 
-            model.setPair(Pair(login, password))
-            viewState.setHelloText(model.getPair())
+            model.setPair(Pair(login, password)).subscribe()
+            model.getPair().subscribe {
+                viewState.setHelloText(it)
+            }
         }
     }
 }
