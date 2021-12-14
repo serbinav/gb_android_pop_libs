@@ -8,8 +8,8 @@ class LoginModel {
         return Pair(loginPasswordPair[0], loginPasswordPair[1])
     }
 
-    fun setPair(login: String, password: String) {
-        loginPasswordPair[0] = login
-        loginPasswordPair[1] = password
+    fun setPair(loginPair: Pair<String,String>) {
+        loginPasswordPair[0] = loginPair.first
+        loginPasswordPair[1] = loginPair.second
     }
 }
