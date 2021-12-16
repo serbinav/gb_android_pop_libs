@@ -12,11 +12,14 @@ class SuccessAuthorizationPresenter(private val login: String, private val passw
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         if (login.isNotEmpty() && password.isNotEmpty()) {
-
-            model.setPair(Pair(login, password)).subscribe()
-            model.getPair().subscribe {
-                viewState.setHelloText(it)
-            }
+            model.setPair(Pair(login, password))
+                .andThen {
+                    model.getPair().map {
+                        viewState.setHelloText(it)
+                    }
+                        .subscribe()
+                }
+                .subscribe()
         }
     }
 }
