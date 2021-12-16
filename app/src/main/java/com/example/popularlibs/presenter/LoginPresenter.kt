@@ -12,9 +12,10 @@ class LoginPresenter(private val router: Router) : MvpPresenter<LoginView>() {
 
     fun btnAcceptClick(login: String, password: String) {
         if (login.isNotEmpty() && password.isNotEmpty()) {
-            model.setPair(login, password)
-
-            router.navigateTo(SuccessAuthorizationScreen(login, password))
+            model.setPair(Pair(login, password)).andThen {
+                router.navigateTo(SuccessAuthorizationScreen(login, password))
+            }
+                .subscribe()
             return
         }
         viewState.showError()
