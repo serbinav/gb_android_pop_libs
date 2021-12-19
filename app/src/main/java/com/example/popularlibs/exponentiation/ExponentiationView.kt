@@ -7,4 +7,6 @@ import moxy.viewstate.strategy.StateStrategyType
 @StateStrategyType(SingleStateStrategy::class)
 interface ExponentiationView: MvpView  {
 
+    fun showResult(number: Int)
+    fun showError(message: String)
 }

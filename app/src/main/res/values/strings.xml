@@ -9,5 +9,7 @@
     <string name="accept">Войти</string>
     <string name="success">Success Authorization!!!</string>
     <string name="error_login">Некорректно введены авторизационные данные!</string>
-    <string name="hello_blank_fragment">ДВА В СТЕПЕНЬ</string>
+    <string name="exponentiation_title">Введи число, которое мы возведем в квадрат</string>
+    <string name="ok">OK</string>
+    <string name="success_exponentiation">Результат операции - %s</string>
 </resources>
