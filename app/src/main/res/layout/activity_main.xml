@@ -20,7 +20,7 @@
         android:src="@drawable/ic_user_shield_100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/fab_counter"
-        app:maxImageSize="48dp" />
+        app:maxImageSize="@dimen/fab_img_size" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_counter"
@@ -30,5 +30,5 @@
         android:src="@drawable/ic_hand_illustration_computer_48"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="48dp" />
+        app:maxImageSize="@dimen/fab_img_size" />
 </androidx.constraintlayout.widget.ConstraintLayout>
