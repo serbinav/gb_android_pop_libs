@@ -1,6 +1,5 @@
 package com.example.popularlibs.exponentiation
 
-import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -9,7 +8,7 @@ import io.reactivex.rxjava3.subjects.AsyncSubject
 
 import moxy.MvpPresenter
 
-class ExponentiationPresenter(router: Router) : MvpPresenter<ExponentiationView>() {
+class ExponentiationPresenter : MvpPresenter<ExponentiationView>() {
 
     private val model = ExponentiationModel()
     private val subject = AsyncSubject.create<String>()

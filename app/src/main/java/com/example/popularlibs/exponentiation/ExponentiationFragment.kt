@@ -3,7 +3,6 @@ package com.example.popularlibs.exponentiation
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.example.popularlibs.App
 import com.example.popularlibs.R
 import com.example.popularlibs.databinding.FragmentExponentiationBinding
 import moxy.MvpAppCompatFragment
@@ -13,7 +12,7 @@ class ExponentiationFragment : MvpAppCompatFragment(R.layout.fragment_exponentia
     ExponentiationView {
 
     private lateinit var binding: FragmentExponentiationBinding
-    private val presenter by moxyPresenter { ExponentiationPresenter(App.instance.router) }
+    private val presenter by moxyPresenter { ExponentiationPresenter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
