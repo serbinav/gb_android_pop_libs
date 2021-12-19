@@ -1,11 +1,11 @@
-package com.example.popularlibs.view.face
+package com.example.popularlibs.success_authorization
 
 import moxy.MvpView
 import moxy.viewstate.strategy.SingleStateStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(SingleStateStrategy::class)
-interface LoginView: MvpView {
+interface SuccessAuthorizationView: MvpView {
 
-    fun showError()
+    fun setHelloText(pair: Pair<String, String>)
 }

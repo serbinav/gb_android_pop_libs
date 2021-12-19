@@ -1,7 +1,5 @@
-package com.example.popularlibs.presenter
+package com.example.popularlibs.success_authorization
 
-import com.example.popularlibs.view.face.SuccessAuthorizationView
-import com.example.popularlibs.model.SuccessAuthorizationModel
 import moxy.MvpPresenter
 
 class SuccessAuthorizationPresenter(private val login: String, private val password: String) :

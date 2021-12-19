@@ -1,11 +1,12 @@
-package com.example.popularlibs.view.face
+package com.example.popularlibs.exponentiation
 
 import moxy.MvpView
 import moxy.viewstate.strategy.SingleStateStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(SingleStateStrategy::class)
-interface SuccessAuthorizationView: MvpView {
+interface ExponentiationView: MvpView  {
 
-    fun setHelloText(pair: Pair<String, String>)
+    fun showResult(number: Int)
+    fun showError(message: String)
 }

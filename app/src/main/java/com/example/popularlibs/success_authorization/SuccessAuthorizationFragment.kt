@@ -1,12 +1,10 @@
-package com.example.popularlibs.view
+package com.example.popularlibs.success_authorization
 
 import android.os.Bundle
 import android.view.View
 import moxy.ktx.moxyPresenter
 import com.example.popularlibs.R
-import com.example.popularlibs.presenter.SuccessAuthorizationPresenter
 import com.example.popularlibs.databinding.FragmentSuccessAuthorizationBinding
-import com.example.popularlibs.view.face.SuccessAuthorizationView
 import moxy.MvpAppCompatFragment
 
 

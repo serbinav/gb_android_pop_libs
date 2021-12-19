@@ -1,8 +1,6 @@
-package com.example.popularlibs.presenter
+package com.example.popularlibs.login
 
-import com.example.popularlibs.model.LoginModel
-import com.example.popularlibs.view.SuccessAuthorizationScreen
-import com.example.popularlibs.view.face.LoginView
+import com.example.popularlibs.success_authorization.SuccessAuthorizationScreen
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 

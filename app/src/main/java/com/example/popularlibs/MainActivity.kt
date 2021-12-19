@@ -1,9 +1,10 @@
-package com.example.popularlibs.view
+package com.example.popularlibs
 
 import android.os.Bundle
-import com.example.popularlibs.App
-import com.example.popularlibs.R
+import com.example.popularlibs.counters.CounterScreen
 import com.example.popularlibs.databinding.ActivityMainBinding
+import com.example.popularlibs.exponentiation.ExponentiationScreen
+import com.example.popularlibs.login.LoginScreen
 import com.example.popularlibs.navigate.CustomNavigator
 import moxy.MvpAppCompatActivity
 
@@ -17,7 +18,15 @@ class MainActivity : MvpAppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (savedInstanceState == null) App.instance.router.replaceScreen(LoginScreen)
+        if (savedInstanceState == null) App.instance.router.replaceScreen(ExponentiationScreen)
+
+        binding.fabCounter.setOnClickListener {
+            App.instance.router.replaceScreen(CounterScreen)
+        }
+
+        binding.fabLogin.setOnClickListener {
+            App.instance.router.replaceScreen(LoginScreen)
+        }
     }
 
     override fun onResumeFragments() {
@@ -31,7 +40,25 @@ class MainActivity : MvpAppCompatActivity(){
     }
 }
 
+//https://api.github.com/users
 //-------------------------------------------------------------------------------------------
+//    Написать следующий экран на MVP
+//    EditText
+//    Кнопка ОК.
+//    Логика: В текстовое поле вводится число.
+//    По нажатию на кнопку, берем значение из EditText
+//    и идем с ним в презентер.
+//    Перемножаем число само на себя (возводим в квадрат)
+//    и возвращаем результат на View.
+
+//    Условие: Запускать цепочку логики надо через Subject
+//    (какой сабджект выбрать - решать вам), через метод onNext()
+//    Математическое вычисление должно быть на фоновом потоке
+//    (какой именно Scheduler использовать - решать вам)
+//-------------------------------------------------------------------------------------------
+//    Новые рельсы, чтобы была некая модель(репозиторий) который содержит возможные пары
+//    "логин/пароль" с помощью RxJava. Чтобы презентер ходил в модель и забирал оттуда данные с помощью Observable
+//
 //    Переделайте взаимодействие модели и логики в коде из второго урока на Rx-паттерн.
 //    * Самостоятельно изучите оператор switchMap. Разберитесь, как он работает и чем отличается от flatMap.
 //    Сформулируйте и напишите ответ в комментарии к практическому заданию. Для экспериментов воспользуйтесь
