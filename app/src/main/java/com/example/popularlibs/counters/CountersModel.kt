@@ -1,4 +1,4 @@
-package com.example.popularlibs.model
+package com.example.popularlibs.counters
 
 import com.example.popularlibs.ButtonTypeEnum
 import com.example.popularlibs.EnumToIndexMapper

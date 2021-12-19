@@ -1,11 +1,11 @@
-package com.example.popularlibs.view
+package com.example.popularlibs.counters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
-object LoginScreen : FragmentScreen {
+object CounterScreen : FragmentScreen {
 
     override fun createFragment(factory: FragmentFactory): Fragment =
-        LoginFragment.newInstance()
+        CounterFragment.newInstance()
 }

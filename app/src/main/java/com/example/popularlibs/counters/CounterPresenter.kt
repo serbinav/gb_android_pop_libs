@@ -1,8 +1,6 @@
-package com.example.popularlibs.presenter
+package com.example.popularlibs.counters
 
 import com.example.popularlibs.*
-import com.example.popularlibs.model.CountersModel
-import com.example.popularlibs.view.face.CounterView
 import moxy.MvpPresenter
 
 class CounterPresenter : MvpPresenter<CounterView>() {

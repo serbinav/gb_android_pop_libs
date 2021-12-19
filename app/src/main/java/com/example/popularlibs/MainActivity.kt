@@ -1,9 +1,9 @@
-package com.example.popularlibs.view
+package com.example.popularlibs
 
 import android.os.Bundle
-import com.example.popularlibs.App
-import com.example.popularlibs.R
+import com.example.popularlibs.counters.CounterScreen
 import com.example.popularlibs.databinding.ActivityMainBinding
+import com.example.popularlibs.login.LoginScreen
 import com.example.popularlibs.navigate.CustomNavigator
 import moxy.MvpAppCompatActivity
 
@@ -18,6 +18,14 @@ class MainActivity : MvpAppCompatActivity(){
         setContentView(binding.root)
 
         if (savedInstanceState == null) App.instance.router.replaceScreen(LoginScreen)
+
+        binding.fabCounter.setOnClickListener {
+            App.instance.router.replaceScreen(CounterScreen)
+        }
+
+        binding.fabLogin.setOnClickListener {
+            App.instance.router.replaceScreen(LoginScreen)
+        }
     }
 
     override fun onResumeFragments() {

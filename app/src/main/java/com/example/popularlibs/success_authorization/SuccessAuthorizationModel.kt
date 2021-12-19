@@ -1,9 +1,9 @@
-package com.example.popularlibs.model
+package com.example.popularlibs.success_authorization
 
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 
-class LoginModel {
+class SuccessAuthorizationModel {
 
     private var loginPasswordPair = mutableListOf("", "")
 
