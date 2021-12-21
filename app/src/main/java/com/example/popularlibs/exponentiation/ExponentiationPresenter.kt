@@ -4,23 +4,28 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import io.reactivex.rxjava3.subjects.AsyncSubject
+import io.reactivex.rxjava3.subjects.BehaviorSubject
 
 import moxy.MvpPresenter
 
 class ExponentiationPresenter : MvpPresenter<ExponentiationView>() {
 
     private val model = ExponentiationModel()
-    private val subject = AsyncSubject.create<String>()
+    private val subject = BehaviorSubject.create<String>()
     private var disposables = CompositeDisposable()
 
-    private fun observeChanges(str: String) {
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        observeChanges()
+    }
+
+    private fun observeChanges() {
         disposables.add(
             subject
-                .flatMap { checkNumberIsNotEmpty(str) }
+                .flatMap { checkNumberIsNotEmpty(it) }
                 .flatMap { checkNumberIsInt(it) }
-                .observeOn(Schedulers.computation())
                 .flatMap { exponentiationNumber(it) }
+                .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     viewState.showResult(it)
@@ -50,12 +55,11 @@ class ExponentiationPresenter : MvpPresenter<ExponentiationView>() {
     }
 
     fun startCount(number: String) {
-        observeChanges(number)
         subject.onNext(number)
-        subject.onComplete()
     }
 
-    fun dispose() {
+    override fun onDestroy() {
         disposables.dispose()
+        super.onDestroy()
     }
 }
