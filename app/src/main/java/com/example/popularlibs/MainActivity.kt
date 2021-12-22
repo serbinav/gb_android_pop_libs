@@ -6,6 +6,7 @@ import com.example.popularlibs.databinding.ActivityMainBinding
 import com.example.popularlibs.exponentiation.ExponentiationScreen
 import com.example.popularlibs.login.LoginScreen
 import com.example.popularlibs.navigate.CustomNavigator
+import com.example.popularlibs.users.UsersScreen
 import moxy.MvpAppCompatActivity
 
 class MainActivity : MvpAppCompatActivity(){
@@ -18,7 +19,7 @@ class MainActivity : MvpAppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        //if (savedInstanceState == null) App.instance.router.replaceScreen(ExponentiationScreen)
+        if (savedInstanceState == null) App.instance.router.replaceScreen(UsersScreen)
 
         binding.fabCounter.setOnClickListener {
             App.instance.router.replaceScreen(CounterScreen)
