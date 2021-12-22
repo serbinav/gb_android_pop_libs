@@ -13,6 +13,16 @@
         android:layout_height="match_parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_exponentiation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:src="@drawable/ic_png_mathematical_symbol_100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fab_login"
+        app:maxImageSize="@dimen/fab_img_size" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -25,11 +25,6 @@ class ExponentiationFragment : MvpAppCompatFragment(R.layout.fragment_exponentia
         }
     }
 
-    override fun onDestroyView() {
-        presenter.dispose()
-        super.onDestroyView()
-    }
-
     companion object {
         fun newInstance(): ExponentiationFragment = ExponentiationFragment()
     }

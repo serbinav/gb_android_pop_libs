@@ -6,6 +6,7 @@ import com.example.popularlibs.databinding.ActivityMainBinding
 import com.example.popularlibs.exponentiation.ExponentiationScreen
 import com.example.popularlibs.login.LoginScreen
 import com.example.popularlibs.navigate.CustomNavigator
+import com.example.popularlibs.users.UsersScreen
 import moxy.MvpAppCompatActivity
 
 class MainActivity : MvpAppCompatActivity(){
@@ -18,7 +19,7 @@ class MainActivity : MvpAppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (savedInstanceState == null) App.instance.router.replaceScreen(ExponentiationScreen)
+        if (savedInstanceState == null) App.instance.router.replaceScreen(UsersScreen)
 
         binding.fabCounter.setOnClickListener {
             App.instance.router.replaceScreen(CounterScreen)
@@ -26,6 +27,10 @@ class MainActivity : MvpAppCompatActivity(){
 
         binding.fabLogin.setOnClickListener {
             App.instance.router.replaceScreen(LoginScreen)
+        }
+
+        binding.fabExponentiation.setOnClickListener {
+            App.instance.router.replaceScreen(ExponentiationScreen)
         }
     }
 
@@ -40,7 +45,12 @@ class MainActivity : MvpAppCompatActivity(){
     }
 }
 
-//https://api.github.com/users
+//    Мы договорились взять пример из второго урока с двумя фрагментами users и user за основу.
+//
+//    После клика по одному из пользователей на первом экране, переходим на второй экран.
+//    На втором экране, используя presenter, надо сделать серверный запрос и получить результат.
+//    и любое поле из ответа сервера отобразить в textView
+//    https://api.github.com/users
 //-------------------------------------------------------------------------------------------
 //    Написать следующий экран на MVP
 //    EditText
@@ -50,7 +60,7 @@ class MainActivity : MvpAppCompatActivity(){
 //    и идем с ним в презентер.
 //    Перемножаем число само на себя (возводим в квадрат)
 //    и возвращаем результат на View.
-
+//
 //    Условие: Запускать цепочку логики надо через Subject
 //    (какой сабджект выбрать - решать вам), через метод onNext()
 //    Математическое вычисление должно быть на фоновом потоке
