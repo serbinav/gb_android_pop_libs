@@ -1,6 +1,6 @@
 package com.example.popularlibs.user
 
-import com.example.popularlibs.data.GitHubUser
+import com.example.popularlibs.data.GitHubUserInfo
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.SingleState
 
@@ -11,6 +11,6 @@ interface UserView : MvpView {
      * @param user пользователь
      */
     @SingleState
-    fun showUser(user: GitHubUser)
+    fun showUserInfo(userInfo: GitHubUserInfo)
 
 }

@@ -1,6 +1,7 @@
 package com.example.popularlibs.data.retrofit
 
 import com.example.popularlibs.data.GitHubUser
+import com.example.popularlibs.data.GitHubUserInfo
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -11,7 +12,7 @@ interface GitHubApi {
     fun fetchUsers(): Single<List<GitHubUser>>
 
     @GET("/users/{login}")
-    fun fetchUserByLogin(@Path("login") login: String): Single<GitHubUser>
+    fun fetchUserByLogin(@Path("login") login: String): Single<GitHubUserInfo>
 
     @GET("/users/{login}/repos")
     fun fetchUserRepositories(@Path("login") login: String): Single<List<GitHubUser>>

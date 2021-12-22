@@ -3,17 +3,18 @@ package com.example.popularlibs.user
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.popularlibs.App
 import com.example.popularlibs.R
-import com.example.popularlibs.data.GitHubUser
+import com.example.popularlibs.data.GitHubUserInfo
 import com.example.popularlibs.data.GitHubUserRepositoryFactory
-import com.example.popularlibs.databinding.ViewUserBinding
+import com.example.popularlibs.databinding.FragmentUserBinding
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class UserFragment: MvpAppCompatFragment(R.layout.view_user), UserView {
+class UserFragment: MvpAppCompatFragment(R.layout.fragment_user), UserView {
 
-    private lateinit var viewBinding: ViewUserBinding
+    private lateinit var viewBinding: FragmentUserBinding
 
     private val userLogin: String by lazy {
         arguments?.getString(ARG_USER_LOGIN).orEmpty()
@@ -29,12 +30,18 @@ class UserFragment: MvpAppCompatFragment(R.layout.view_user), UserView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding = ViewUserBinding.bind(view)
-        viewBinding.userLogin.text = userLogin
+        viewBinding = FragmentUserBinding.bind(view)
+        viewBinding.userLogin.editText?.setText(userLogin)
     }
 
-    override fun showUser(user: GitHubUser) {
-        viewBinding.userLogin.text = user.login
+    override fun showUserInfo(userInfo: GitHubUserInfo) {
+        Glide.with(viewBinding.userAvatar.context)
+            .load(userInfo.avatarUrl)
+            .into(viewBinding.userAvatar)
+
+        viewBinding.userLogin.editText?.setText(userInfo.login)
+        viewBinding.userName.editText?.setText(userInfo.name)
+        viewBinding.userLocation.editText?.setText(userInfo.location)
     }
 
     companion object {
