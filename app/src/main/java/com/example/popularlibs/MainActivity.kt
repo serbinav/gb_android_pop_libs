@@ -18,7 +18,7 @@ class MainActivity : MvpAppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (savedInstanceState == null) App.instance.router.replaceScreen(ExponentiationScreen)
+        //if (savedInstanceState == null) App.instance.router.replaceScreen(ExponentiationScreen)
 
         binding.fabCounter.setOnClickListener {
             App.instance.router.replaceScreen(CounterScreen)
@@ -26,6 +26,10 @@ class MainActivity : MvpAppCompatActivity(){
 
         binding.fabLogin.setOnClickListener {
             App.instance.router.replaceScreen(LoginScreen)
+        }
+
+        binding.fabExponentiation.setOnClickListener {
+            App.instance.router.replaceScreen(ExponentiationScreen)
         }
     }
 
