@@ -7,6 +7,11 @@ import com.github.terrakok.cicerone.Cicerone
 
 class App : Application() {
 
+    @SuppressLint("StaticFieldLeak")
+    object ContextHolder {
+        lateinit var context: Context
+    }
+
     private val cicerone = Cicerone.create()
     val router get() = cicerone.router
     val navigationHolder get() = cicerone.getNavigatorHolder()
