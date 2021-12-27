@@ -1,9 +1,9 @@
 package com.example.popularlibs.counters
 
 import com.example.popularlibs.ButtonTypeEnum
-import com.example.popularlibs.EnumToIndexMapper
+import com.example.popularlibs.UtilsMapper
 
-class CountersModel(private val mapper: EnumToIndexMapper) {
+class CountersModel(private val mapper: UtilsMapper) {
 
     private val counters = mutableListOf(0, 0, 0)
 

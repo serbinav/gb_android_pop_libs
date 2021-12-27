@@ -1,4 +1,5 @@
-import com.example.popularlibs.data.retrofit.GitHubApi
+package com.example.popularlibs.data.retrofit
+
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient

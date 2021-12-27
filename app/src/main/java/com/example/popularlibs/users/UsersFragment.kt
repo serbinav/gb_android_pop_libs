@@ -2,6 +2,7 @@ package com.example.popularlibs.users
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.popularlibs.App
 import com.example.popularlibs.R
@@ -32,6 +33,10 @@ class UsersFragment: MvpAppCompatFragment(R.layout.view_users), UsersView, Users
 
     override fun showUsers(users: List<GitHubUser>) {
         usersAdapter.submitList(users)
+    }
+
+    override fun showError(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     override fun onUserPicked(user: GitHubUser) {

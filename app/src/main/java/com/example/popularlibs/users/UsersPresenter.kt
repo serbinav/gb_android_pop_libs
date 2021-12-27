@@ -10,25 +10,24 @@ import moxy.MvpPresenter
 class UsersPresenter(
     private val userRepository: GitHubUserRepository,
     private val router: Router
-): MvpPresenter<UsersView>() {
+) : MvpPresenter<UsersView>() {
 
     override fun onFirstViewAttach() {
-       updateContent()
+        updateContent()
     }
 
     fun goToNextScreen(login: String) {
         router.navigateTo(UserScreen(login))
     }
 
-    fun updateContent() {
+    private fun updateContent() {
         userRepository.getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 viewState.showUsers(it)
-            },{
-                val errorMessage = it.message
-                //DisplayError
+            }, { error ->
+                error.message?.let { viewState.showError(it) }
             })
     }
 }

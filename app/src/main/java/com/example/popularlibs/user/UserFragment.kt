@@ -2,9 +2,9 @@ package com.example.popularlibs.user
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.example.popularlibs.App
 import com.example.popularlibs.R
 import com.example.popularlibs.data.GitHubUserInfo
 import com.example.popularlibs.data.GitHubUserRepositoryFactory
@@ -24,7 +24,6 @@ class UserFragment: MvpAppCompatFragment(R.layout.fragment_user), UserView {
         UserPresenter(
             userLogin = userLogin,
             userRepository = GitHubUserRepositoryFactory.create(),
-            router = App.instance.router
         )
     }
 
@@ -42,6 +41,10 @@ class UserFragment: MvpAppCompatFragment(R.layout.fragment_user), UserView {
         viewBinding.userLogin.editText?.setText(userInfo.login)
         viewBinding.userName.editText?.setText(userInfo.name)
         viewBinding.userLocation.editText?.setText(userInfo.location)
+    }
+
+    override fun showError(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     companion object {

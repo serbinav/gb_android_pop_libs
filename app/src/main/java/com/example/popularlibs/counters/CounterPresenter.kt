@@ -5,7 +5,7 @@ import moxy.MvpPresenter
 
 class CounterPresenter : MvpPresenter<CounterView>() {
 
-    private val mapper = EnumToIndexMapper()
+    private val mapper = UtilsMapper()
     private val model = CountersModel(mapper)
 
     fun counterClick(type: ButtonTypeEnum) {
