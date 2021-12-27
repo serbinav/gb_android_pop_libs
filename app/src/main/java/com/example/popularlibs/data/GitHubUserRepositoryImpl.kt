@@ -1,5 +1,6 @@
 package com.example.popularlibs.data
 
+import com.example.popularlibs.data.retrofit.GitHubApiFactory
 import io.reactivex.rxjava3.core.Single
 
 class GitHubUserRepositoryImpl : GitHubUserRepository {
