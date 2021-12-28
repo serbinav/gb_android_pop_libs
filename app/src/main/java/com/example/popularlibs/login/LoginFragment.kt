@@ -13,7 +13,12 @@ class LoginFragment : MvpAppCompatFragment(R.layout.fragment_login),
     LoginView {
 
     private lateinit var binding: FragmentLoginBinding
-    private val presenter by moxyPresenter { LoginPresenter(App.instance.router) }
+
+    private val presenter:LoginPresenter by moxyPresenter {
+        LoginPresenter().apply {
+            App.instance.component.inject(this)
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

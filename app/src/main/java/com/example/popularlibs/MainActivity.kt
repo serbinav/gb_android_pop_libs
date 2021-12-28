@@ -7,44 +7,60 @@ import com.example.popularlibs.exponentiation.ExponentiationScreen
 import com.example.popularlibs.login.LoginScreen
 import com.example.popularlibs.navigate.CustomNavigator
 import com.example.popularlibs.users.UsersScreen
+import com.github.terrakok.cicerone.NavigatorHolder
+import com.github.terrakok.cicerone.Router
 import moxy.MvpAppCompatActivity
+import javax.inject.Inject
 
-class MainActivity : MvpAppCompatActivity(){
+class MainActivity : MvpAppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     private val navigator = CustomNavigator(this, R.id.container)
 
+    @Inject
+    lateinit var router: Router
+
+    @Inject
+    lateinit var navigationHolder: NavigatorHolder
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (savedInstanceState == null) App.instance.router.replaceScreen(UsersScreen)
+        App.instance.component.inject(this)
+
+        if (savedInstanceState == null) {
+            router.replaceScreen(UsersScreen)
+        }
 
         binding.fabCounter.setOnClickListener {
-            App.instance.router.replaceScreen(CounterScreen)
+            router.replaceScreen(CounterScreen)
         }
 
         binding.fabLogin.setOnClickListener {
-            App.instance.router.replaceScreen(LoginScreen)
+            router.replaceScreen(LoginScreen)
         }
 
         binding.fabExponentiation.setOnClickListener {
-            App.instance.router.replaceScreen(ExponentiationScreen)
+            router.replaceScreen(ExponentiationScreen)
         }
     }
 
     override fun onResumeFragments() {
         super.onResumeFragments()
-        App.instance.navigationHolder.setNavigator(navigator)
+        navigationHolder.setNavigator(navigator)
     }
 
     override fun onPause() {
-        App.instance.navigationHolder.removeNavigator()
+        navigationHolder.removeNavigator()
         super.onPause()
     }
 }
 
+//-------------------------------------------------------------------------------------------
+//    Перевести проект с предыдущего домашнего задания (про Room) на dagger
+//
 //-------------------------------------------------------------------------------------------
 //    Импортировать в проект Room и при первом обращении к БД записать ответ сервера в Базу данных.
 //
