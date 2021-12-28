@@ -5,14 +5,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.popularlibs.App
 import com.example.popularlibs.R
 import com.example.popularlibs.data.GitHubUserInfo
-import com.example.popularlibs.data.GitHubUserRepositoryFactory
 import com.example.popularlibs.databinding.FragmentUserBinding
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class UserFragment: MvpAppCompatFragment(R.layout.fragment_user), UserView {
+class UserFragment : MvpAppCompatFragment(R.layout.fragment_user), UserView {
 
     private lateinit var viewBinding: FragmentUserBinding
 
@@ -22,9 +22,10 @@ class UserFragment: MvpAppCompatFragment(R.layout.fragment_user), UserView {
 
     private val presenter: UserPresenter by moxyPresenter {
         UserPresenter(
-            userLogin = userLogin,
-            userRepository = GitHubUserRepositoryFactory.create(),
-        )
+            userLogin = userLogin
+        ).apply {
+            App.instance.component.inject(this)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

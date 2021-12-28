@@ -4,11 +4,12 @@ import com.example.popularlibs.data.GitHubUserRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
+import javax.inject.Inject
 
-class UserPresenter(
-    private val userLogin: String,
-    private val userRepository: GitHubUserRepository,
-) : MvpPresenter<UserView>() {
+class UserPresenter(private val userLogin: String): MvpPresenter<UserView>() {
+
+    @Inject
+    lateinit var userRepository: GitHubUserRepository
 
     override fun onFirstViewAttach() {
         userRepository.getUserByLogin(userLogin)

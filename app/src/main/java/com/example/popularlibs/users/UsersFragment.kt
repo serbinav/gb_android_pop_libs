@@ -7,19 +7,18 @@ import androidx.fragment.app.Fragment
 import com.example.popularlibs.App
 import com.example.popularlibs.R
 import com.example.popularlibs.data.GitHubUser
-import com.example.popularlibs.data.GitHubUserRepositoryFactory
 import com.example.popularlibs.databinding.ViewUsersBinding
 import com.example.popularlibs.recycler.UsersAdapter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class UsersFragment: MvpAppCompatFragment(R.layout.view_users), UsersView, UsersAdapter.OnUserClickListener {
+class UsersFragment : MvpAppCompatFragment(R.layout.view_users), UsersView,
+    UsersAdapter.OnUserClickListener {
 
     private val presenter: UsersPresenter by moxyPresenter {
-        UsersPresenter(
-            userRepository = GitHubUserRepositoryFactory.create(),
-            router = App.instance.router
-        )
+        UsersPresenter().apply {
+            App.instance.component.inject(this)
+        }
     }
 
     private val usersAdapter = UsersAdapter(this)

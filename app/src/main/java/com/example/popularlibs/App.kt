@@ -1,25 +1,19 @@
 package com.example.popularlibs
 
-import android.annotation.SuppressLint
 import android.app.Application
-import android.content.Context
-import com.github.terrakok.cicerone.Cicerone
+import com.example.popularlibs.di.ApplicationComponent
+import com.example.popularlibs.di.DaggerApplicationComponent
 
 class App : Application() {
 
-    @SuppressLint("StaticFieldLeak")
-    object ContextHolder {
-        lateinit var context: Context
-    }
-
-    private val cicerone = Cicerone.create()
-    val router get() = cicerone.router
-    val navigationHolder get() = cicerone.getNavigatorHolder()
+    lateinit var component: ApplicationComponent
 
     override fun onCreate() {
         super.onCreate()
         instance = this
-        ContextHolder.context = this
+        component = DaggerApplicationComponent.builder()
+            .setContext(this)
+            .build()
     }
 
     companion object {
