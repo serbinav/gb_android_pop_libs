@@ -12,13 +12,22 @@ class UserPresenter(private val userLogin: String): MvpPresenter<UserView>() {
     lateinit var userRepository: GitHubUserRepository
 
     override fun onFirstViewAttach() {
-        userRepository.getUserByLogin(userLogin)
+        userRepository.getUserRepos(userLogin)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                viewState.showUserInfo(it)
             }, { error ->
                 error.message?.let { viewState.showError(it) }
             })
+
+//TODO тут нужно доработать после починки api запроса
+//        userRepository.getUserByLogin(userLogin)
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe({
+//                viewState.showUserInfo(it)
+//            }, { error ->
+//                error.message?.let { viewState.showError(it) }
+//            })
     }
 }

@@ -14,6 +14,7 @@ class RoomModule {
     @Provides
     fun provideRoom(context: Context): DBStorage =
         Room.databaseBuilder(context, DBStorage::class.java, "github.db")
+            .fallbackToDestructiveMigration()
             .build()
 
 }
