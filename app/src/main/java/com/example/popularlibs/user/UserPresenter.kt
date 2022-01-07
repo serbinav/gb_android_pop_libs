@@ -16,11 +16,12 @@ class UserPresenter(private val userLogin: String): MvpPresenter<UserView>() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                viewState.showUserRepos(it)
             }, { error ->
                 error.message?.let { viewState.showError(it) }
             })
 
-//TODO тут нужно доработать после починки api запроса
+//TODO тут нужно переделать
 //        userRepository.getUserByLogin(userLogin)
 //            .subscribeOn(Schedulers.io())
 //            .observeOn(AndroidSchedulers.mainThread())

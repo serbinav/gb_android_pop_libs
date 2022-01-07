@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.popularlibs.App
 import com.example.popularlibs.R
 import com.example.popularlibs.data.GitHubUserInfo
+import com.example.popularlibs.data.GitHubUserRepos
 import com.example.popularlibs.databinding.FragmentUserBinding
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -42,6 +43,10 @@ class UserFragment : MvpAppCompatFragment(R.layout.fragment_user), UserView {
         viewBinding.userLogin.editText?.setText(userInfo.login)
         viewBinding.userName.editText?.setText(userInfo.name)
         viewBinding.userLocation.editText?.setText(userInfo.location)
+    }
+
+    override fun showUserRepos(userRepos: GitHubUserRepos) {
+        viewBinding.userName.editText?.setText(userRepos.name)
     }
 
     override fun showError(message: String) {

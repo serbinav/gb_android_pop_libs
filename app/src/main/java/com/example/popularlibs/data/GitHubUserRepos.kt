@@ -28,13 +28,8 @@ data class GitHubUserRepos(
     @SerializedName("full_name")
     val fullName: String = "",
 
-//TODO вернуть если проблема не тут
-//    @ColumnInfo
-//    @SerializedName("private")
-//    val privateField: String? = null
-
     @ColumnInfo
     @SerializedName("html_url")
-    val htmlUrl: String = "",
+    val htmlUrl: String = ""
 
 ) : Parcelable

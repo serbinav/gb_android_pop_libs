@@ -42,9 +42,14 @@ constructor(
                     gitHubApi.fetchUserRepos(login)
                         .map { resultFromServer ->
                             roomDb.getGitHubUserReposDao().saveUserRepos(resultFromServer)
+                            resultFromServer
                         }
-               }
-                roomDb.getGitHubUserReposDao().getUserFirstReposByLogin(login)
+                        .flatMap { resultFromServer ->
+                            Single.just(resultFromServer.first())
+                        }
+                } else {
+                    roomDb.getGitHubUserReposDao().getUserFirstReposByLogin(login)
+                }
             }
     }
 }
