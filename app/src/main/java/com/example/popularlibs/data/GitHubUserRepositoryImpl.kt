@@ -34,26 +34,4 @@ constructor(
                 UtilsMapper().mapGitHubUserToGitHubUserInfo(it)
             }
     }
-
-    override fun getUserRepos(login: String): Single<GitHubUserRepos> {
-        return roomDb.getGitHubUserReposDao().getUserReposByLogin(login)
-            .flatMap {
-                if (it.isEmpty()) {
-                    gitHubApi.fetchUserRepos(login)
-                        .map { resultFromServer ->
-                            resultFromServer
-                                .filter { data -> data.fullName.contains(login) }
-                        }
-                        .map { resultFromServer ->
-                            roomDb.getGitHubUserReposDao().saveUserRepos(resultFromServer)
-                            resultFromServer
-                        }
-                        .flatMap { resultFromServer ->
-                            Single.just(resultFromServer.first())
-                        }
-                } else {
-                    roomDb.getGitHubUserReposDao().getUserFirstReposByLogin(login)
-                }
-            }
-    }
 }
