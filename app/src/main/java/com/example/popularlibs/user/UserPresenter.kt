@@ -9,6 +9,9 @@ import javax.inject.Inject
 class UserPresenter(private val userLogin: String): MvpPresenter<UserView>() {
 
     @Inject
+    lateinit var glideWrapper: GlideWrapper
+
+    @Inject
     lateinit var userRepository: GitHubUserRepository
 
     override fun onFirstViewAttach() {
