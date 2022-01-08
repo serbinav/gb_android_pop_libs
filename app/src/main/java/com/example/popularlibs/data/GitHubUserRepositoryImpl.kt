@@ -41,6 +41,10 @@ constructor(
                 if (it.isEmpty()) {
                     gitHubApi.fetchUserRepos(login)
                         .map { resultFromServer ->
+                            resultFromServer
+                                .filter { data -> data.fullName.contains(login) }
+                        }
+                        .map { resultFromServer ->
                             roomDb.getGitHubUserReposDao().saveUserRepos(resultFromServer)
                             resultFromServer
                         }

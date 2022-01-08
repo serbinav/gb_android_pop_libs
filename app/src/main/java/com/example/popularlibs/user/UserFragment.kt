@@ -47,6 +47,8 @@ class UserFragment : MvpAppCompatFragment(R.layout.fragment_user), UserView {
 
     override fun showUserRepos(userRepos: GitHubUserRepos) {
         viewBinding.userName.editText?.setText(userRepos.name)
+        viewBinding.fullName.editText?.setText(userRepos.fullName)
+        viewBinding.description.editText?.setText(userRepos.description)
     }
 
     override fun showError(message: String) {

@@ -29,6 +29,10 @@ data class GitHubUserRepos(
     val fullName: String = "",
 
     @ColumnInfo
+    @SerializedName("description")
+    val description: String? = null,
+
+    @ColumnInfo
     @SerializedName("html_url")
     val htmlUrl: String = ""
 

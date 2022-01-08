@@ -20,15 +20,5 @@ class UserPresenter(private val userLogin: String): MvpPresenter<UserView>() {
             }, { error ->
                 error.message?.let { viewState.showError(it) }
             })
-
-//TODO тут нужно переделать
-//        userRepository.getUserByLogin(userLogin)
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe({
-//                viewState.showUserInfo(it)
-//            }, { error ->
-//                error.message?.let { viewState.showError(it) }
-//            })
     }
 }
