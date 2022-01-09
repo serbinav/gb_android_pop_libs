@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.popularlibs.App
 import com.example.popularlibs.R
 import com.example.popularlibs.data.GitHubUserInfo
+import com.example.popularlibs.data.GitHubUserRepos
 import com.example.popularlibs.databinding.FragmentUserBinding
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -24,7 +25,7 @@ class UserFragment : MvpAppCompatFragment(R.layout.fragment_user), UserView {
         UserPresenter(
             userLogin = userLogin
         ).apply {
-            App.instance.component.inject(this)
+            App.instance.initUserComponent().inject(this)
         }
     }
 
@@ -32,6 +33,11 @@ class UserFragment : MvpAppCompatFragment(R.layout.fragment_user), UserView {
         super.onViewCreated(view, savedInstanceState)
         viewBinding = FragmentUserBinding.bind(view)
         viewBinding.userLogin.editText?.setText(userLogin)
+    }
+
+    override fun onDestroy() {
+        App.instance.destroyUserComponent()
+        super.onDestroy()
     }
 
     override fun showUserInfo(userInfo: GitHubUserInfo) {
@@ -42,6 +48,12 @@ class UserFragment : MvpAppCompatFragment(R.layout.fragment_user), UserView {
         viewBinding.userLogin.editText?.setText(userInfo.login)
         viewBinding.userName.editText?.setText(userInfo.name)
         viewBinding.userLocation.editText?.setText(userInfo.location)
+    }
+
+    override fun showUserRepos(userRepos: GitHubUserRepos) {
+        viewBinding.userName.editText?.setText(userRepos.name)
+        viewBinding.fullName.editText?.setText(userRepos.fullName)
+        viewBinding.description.editText?.setText(userRepos.description)
     }
 
     override fun showError(message: String) {

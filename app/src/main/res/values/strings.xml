@@ -15,4 +15,6 @@
     <string name="text_login">login</string>
     <string name="text_name">name</string>
     <string name="text_location">location</string>
+    <string name="text_full_name">full name</string>
+    <string name="text_description">description</string>
 </resources>
