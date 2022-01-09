@@ -3,7 +3,6 @@ package com.example.popularlibs.di
 import android.content.Context
 import com.example.popularlibs.MainActivity
 import com.example.popularlibs.login.LoginPresenter
-import com.example.popularlibs.user.UserPresenter
 import com.example.popularlibs.user.di.UserComponent
 import com.example.popularlibs.users.UsersPresenter
 import dagger.BindsInstance
@@ -34,6 +33,5 @@ interface ApplicationComponent {
 
     fun inject(activity: MainActivity)
     fun inject(activity: UsersPresenter)
-    fun inject(activity: UserPresenter)
     fun inject(activity: LoginPresenter)
 }

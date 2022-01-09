@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class AllDependenciesModule {
+class GlideModule {
 
     @FragmentScope
     @Provides

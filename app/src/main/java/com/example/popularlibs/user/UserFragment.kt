@@ -25,7 +25,7 @@ class UserFragment : MvpAppCompatFragment(R.layout.fragment_user), UserView {
         UserPresenter(
             userLogin = userLogin
         ).apply {
-            App.instance.component.inject(this)
+            App.instance.initUserComponent().inject(this)
         }
     }
 
@@ -33,6 +33,11 @@ class UserFragment : MvpAppCompatFragment(R.layout.fragment_user), UserView {
         super.onViewCreated(view, savedInstanceState)
         viewBinding = FragmentUserBinding.bind(view)
         viewBinding.userLogin.editText?.setText(userLogin)
+    }
+
+    override fun onDestroy() {
+        App.instance.destroyUserComponent()
+        super.onDestroy()
     }
 
     override fun showUserInfo(userInfo: GitHubUserInfo) {

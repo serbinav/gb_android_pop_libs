@@ -6,7 +6,10 @@ import javax.inject.Scope
 
 @FragmentScope
 @Subcomponent(
-    modules = [AllDependenciesModule::class]
+    modules = [
+        GlideModule::class,
+        UserReposModule::class
+    ]
 )
 interface UserComponent {
 
