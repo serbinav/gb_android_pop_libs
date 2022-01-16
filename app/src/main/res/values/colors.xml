@@ -13,4 +13,5 @@
     <color name="gray_brown">#8E7970</color>
     <color name="fireworks">#F55449</color>
     <color name="oceanic">#1B4B5A</color>
+    <color name="loading_background">#80808080</color>
 </resources>
