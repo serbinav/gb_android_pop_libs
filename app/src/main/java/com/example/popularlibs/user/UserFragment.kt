@@ -1,8 +1,8 @@
 package com.example.popularlibs.user
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.popularlibs.App
@@ -57,7 +57,24 @@ class UserFragment : MvpAppCompatFragment(R.layout.fragment_user), UserView {
     }
 
     override fun showError(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+        requireActivity().let {
+            val builder = AlertDialog.Builder(it)
+            builder.setTitle("Ошибка!")
+                .setMessage(message)
+                .setPositiveButton("ОК") { dialog, _ ->
+                    dialog.cancel()
+                }
+            builder.create().show()
+        }
+    }
+
+    override fun setProgressBarVisibility(isVisible: Boolean) {
+        val visibility = if (isVisible) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+        viewBinding.includeLoadingLayout.loadingLayout.visibility = visibility
     }
 
     companion object {

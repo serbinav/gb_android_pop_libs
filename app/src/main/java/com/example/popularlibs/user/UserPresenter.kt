@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 import javax.inject.Inject
 
-class UserPresenter(private val userLogin: String): MvpPresenter<UserView>() {
+class UserPresenter(private val userLogin: String) : MvpPresenter<UserView>() {
 
     @Inject
     lateinit var glideWrapper: GlideWrapper
@@ -17,7 +17,13 @@ class UserPresenter(private val userLogin: String): MvpPresenter<UserView>() {
     override fun onFirstViewAttach() {
         userReposRepository.getUserRepos(userLogin)
             .subscribeOn(Schedulers.io())
+            .doOnSubscribe {
+                viewState.setProgressBarVisibility(true)
+            }
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnTerminate {
+                viewState.setProgressBarVisibility(false)
+            }
             .subscribe({
                 viewState.showUserRepos(it)
             }, { error ->
