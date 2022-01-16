@@ -19,4 +19,7 @@ interface UserView : MvpView {
 
     @OneExecution
     fun showError(message: String)
+
+    @SingleState
+    fun setProgressBarVisibility(isVisible: Boolean)
 }
