@@ -35,22 +35,24 @@ class ExponentiationPresenter : MvpPresenter<ExponentiationView>() {
         )
     }
 
-    private fun checkNumberIsNotEmpty(number: String): Observable<String> {
+    fun checkNumberIsNotEmpty(number: String): Observable<String> {
         if (number.isNotEmpty()) {
             return Observable.just(number)
         }
-        throw Exception("Данные в поле отсутствуют!")
+        return Observable.error(Exception("Данные в поле отсутствуют!"))
     }
 
-    private fun checkNumberIsInt(number: String): Observable<Int> {
-        try {
-            return Observable.just(number.toInt())
-        } catch (ex: NumberFormatException) {
-            throw Exception("Данные в поле имеют не числовой формат!")
+    fun checkNumberIsInt(number: String): Observable<Int> {
+        return Observable.fromCallable {
+            try {
+                number.toInt()
+            } catch (ex: NumberFormatException) {
+                throw Exception("Данные в поле имеют не числовой формат!")
+            }
         }
     }
 
-    private fun exponentiationNumber(number: Int): Observable<Int> {
+    fun exponentiationNumber(number: Int): Observable<Int> {
         return Observable.just(number * number)
     }
 
