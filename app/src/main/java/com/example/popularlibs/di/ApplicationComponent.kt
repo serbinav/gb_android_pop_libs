@@ -18,6 +18,7 @@ import javax.inject.Singleton
         RepositoryModule::class,
         RoomModule::class
     ])
+
 interface ApplicationComponent {
 
     fun provideUserComponent(): UserComponent.Builder
